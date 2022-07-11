@@ -1,0 +1,110 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <title>Document</title>
+    <style>
+      html,
+      body,
+      div,
+      span,
+      h1,
+      p,
+      a {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font-family: "Noto Sans KR";
+        font-style: normal;
+        vertical-align: baseline;
+      }
+      #wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        height: 500px;
+        /* background-color: green; */
+        border: 1px solid #505050;
+      }
+      #titlewrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 50px;
+        background: #333333;
+      }
+
+      #logo {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+      }
+
+      #title {
+        margin-top: 5px;
+        font-family: "Noto Sans KR";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 36px;
+        letter-spacing: 0.04em;
+        color: #ffffff;
+      }
+
+      .txt {
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      #linkbox {
+        display: block;
+        width: 300px;
+        height: 50px;
+        margin-top: 40px;
+        margin-left: 50px;
+        background-color: #ededed;
+        text-align: center;
+        font-size: 10px;
+        line-height: 50px;
+      }
+
+      #bottomtxt {
+        width: 240px;
+        height: 30px;
+        margin-top: 70px;
+        margin-left: 80px;
+        font-size: 10px;
+        text-align: center;
+        /* border: 1px solid red; */
+        color: #999999;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="titlewrapper">
+        <img
+          src="https://storage.googleapis.com/teamproject_storage/mainClick.png"
+          id="logo"
+        /><img />
+        <h1 id="title">SMAF</h1>
+      </div>
+
+      <p class="txt">안녕하세요 ❗️</p>
+      <p class="txt">SMAF 팀프로젝트에 초대되었습니다.</p>
+      <p class="txt">아래 링크를 클릭해 로그인해 주세요.</p>
+      <p class="txt">👇🏼👇🏼👇🏼</p>
+      <a href="" id="linkbox"></a>
+
+      <p id="bottomtxt">
+        스마프는 SMAF는 Schedule Management Assist Friend 의 약자로 일정 관리를
+        도와주는 Flatform 입니다.
+      </p>
+    </div>
+  </body>
+</html>

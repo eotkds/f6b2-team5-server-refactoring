@@ -1,0 +1,265 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  userId: String!
+  userName: String!
+  email: String!
+  phone: String!
+  userImageURL: String!
+  projectTicket: Int!
+  admin: Boolean!
+  createAt: DateTime!
+  updateAt: DateTime!
+  deletedAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type ProjectAddress {
+  projectAddressId: String!
+  address: String!
+  detailAddress: String!
+}
+
+type Project {
+  projectId: String!
+  projectName: String!
+  projectIntro: String!
+  projectDetailIntro: String!
+  projectImageURL: String!
+  startDate: DateTime!
+  endDate: DateTime!
+  status: Boolean!
+  projectColor: String!
+  createAt: DateTime!
+  updateAt: DateTime!
+  deletedAt: DateTime!
+  address: ProjectAddress!
+}
+
+type ProjectParticipant {
+  projectParticipantId: String!
+  position: PARTICIPANT_POSITION_ENUM!
+  isActivated: Boolean!
+  createdAt: DateTime!
+  user: User!
+  project: Project!
+}
+
+enum PARTICIPANT_POSITION_ENUM {
+  LEADER
+  MEMBER
+}
+
+type QuestionBoard {
+  questionBoardId: String!
+  questionCategory: String!
+  title: String!
+  contents: String!
+  createAt: DateTime!
+  user: User!
+}
+
+type QuestionComment {
+  questionCommentId: String!
+  contents: String!
+  createAt: DateTime!
+  questionBoard: QuestionBoard!
+  user: User!
+}
+
+type ProcessCategory {
+  processCategoryId: String!
+  processName: String!
+  project: Project!
+  createAt: DateTime!
+}
+
+type Payment {
+  paymentId: String!
+  impUid: String!
+  amount: Int!
+  product_name: String!
+  status: PAYMENT_TRANSACTION_STATUS_ENUM!
+  createAt: DateTime!
+  user: User!
+}
+
+enum PAYMENT_TRANSACTION_STATUS_ENUM {
+  PAYMENT
+  CANCEL
+}
+
+type Schedule {
+  scheduleId: String!
+  scheduleName: String!
+  scheduleContents: String!
+  scheduleDate: DateTime!
+  status: Boolean!
+  processCategory: ProcessCategory!
+  user: User!
+  project: Project!
+  createAt: DateTime!
+  updateAt: DateTime!
+  deletedAt: DateTime!
+}
+
+type ProjectFile {
+  projectFileId: String!
+  filename: String!
+  fileURL: String!
+  user: User!
+  project: Project!
+}
+
+type Query {
+  fetchPayments(page: Int): [Payment!]!
+  fetchPayment(paymentId: String!): Payment!
+  fetchPaymentsCount: Int!
+  fetchParticipatingUser(projectId: String!): [ProjectParticipant!]!
+  fetchParticipatingProject: [ProjectParticipant!]!
+  fetchActivatedProject: [ProjectParticipant!]!
+  fetchInactivatedProject(standard: String!): [ProjectParticipant!]!
+  fetchProcessCategories(projectId: String!): [ProcessCategory!]!
+  fetchprocessCategory(processCategoryId: String!): [ProcessCategory!]!
+  fetchProjectFiles(projectId: String!): [ProjectFile!]!
+  fetchProjectFile(projectFileId: String!): ProjectFile!
+  fetchProjectsAll: [Project!]!
+  fetchProject(projectId: String!): Project!
+  fetchQuestionBoard(questionboardId: String!): QuestionBoard!
+  fetchQuestionBoards(page: Int): [QuestionBoard!]!
+  fetchQuestionBoardsCount: Int!
+  fetchQuestionComment(questionCommentId: String!): QuestionComment!
+  fetchQuestionComments(questionBoardId: String!): [QuestionComment!]!
+  fetchSchedules: [Schedule!]!
+  fetchCategorySchedules(processCategoryId: String!): [Schedule!]!
+  fetchProjectSchedules(projectId: String!): [Schedule!]!
+  fetchSchedule(scheduleId: String!): Schedule!
+  fetchUsers: [User!]!
+  fetchLoginUser: User!
+  fetchUser(userId: String!): User!
+  fetchUserEmail(userOremail: String!): [User!]!
+}
+
+type Mutation {
+  login(email: String!, password: String!): String!
+  logout: String!
+  restoreAccessToken: String!
+  sendTokenPhone(phone: String!): String!
+  checkedToekn(phone: String!, inputToken: String!): String!
+  sendInvitaionEmail(email: [String!]!): String!
+  userImageUpload(file: Upload!): String!
+  projectImageUpload(file: Upload!): String!
+  projectFileUpload(file: Upload!): String!
+  deleteProjectFile(projectFileId: String!): Boolean!
+  createPayment(impUid: String!, amount: Float!): Payment!
+  cancelPayment(impUid: String!): Boolean!
+  createParticipant(email: String!, projectId: String!): ProjectParticipant!
+  updateParticipant(isActivated: Boolean!, projectParticipantId: String!): ProjectParticipant!
+  deleteParticipant(projectParticipantId: String!): Boolean!
+  createProcessCategory(processName: String!, projectId: String!): ProcessCategory!
+  updateProcessCategory(processName: String!, processCategoryId: String!): ProcessCategory!
+  deleteProcessCategory(processCategoryId: String!): Boolean!
+  createProjectFile(filename: String!, fileURL: String!, projectId: String!): ProjectFile!
+  updateProjectFile(projectFileId: String!, updateProjectFile: UpdateProjectFile!): ProjectFile!
+  createProject(createProjectInput: CreateProjectInput!): Project!
+  updateProject(projectId: String!, updateProjectInput: UpdateProjectInput!): Project!
+  deleteProject(projectId: String!): Boolean!
+  createQuestionBoard(createquestionBoardInput: CreateQuestionBoardInput!): QuestionBoard!
+  updateQuestionBoard(questionBoardID: String!, updatequestionBoardInput: UpdateQuestionBoardInput!): QuestionBoard!
+  deleteQuestionBoard(boardId: String!): Boolean!
+  createQuestionComment(contents: String!, questionboardId: String!): QuestionComment!
+  updateQuestionComment(questionCommentId: String!, updatequestionCommentInput: UpdateQuestionCommentInput!): QuestionComment!
+  deleteQuestionComment(questionCommentId: String!): Boolean!
+  createSchedule(createScheduleInput: CreateScheduleInput!): Schedule!
+  updateSchedule(scheduleId: String!, updateScheduleInput: UpdateScheduleInput!): Schedule!
+  deleteSchedule(scheduleId: String!): Boolean!
+  createUser(createUserInput: createUserInput!): User!
+  updatePassword(email: String!, password: String!): String!
+  deleteUser(email: String!): Boolean!
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+input UpdateProjectFile {
+  filename: String
+  fileURL: String
+  user: String
+  project: String
+}
+
+input CreateProjectInput {
+  projectName: String!
+  projectIntro: String!
+  projectDetailIntro: String!
+  projectImageURL: String
+  projectColor: String
+  startDate: DateTime!
+  endDate: DateTime!
+  projectAddress: ProjectAddressInput!
+}
+
+input ProjectAddressInput {
+  address: String
+  detailAddress: String
+}
+
+input UpdateProjectInput {
+  projectName: String
+  projectIntro: String
+  projectDetailIntro: String
+  projectImageURL: String
+  projectColor: String
+  startDate: DateTime
+  endDate: DateTime
+  projectAddress: ProjectAddressInput
+  status: Boolean
+}
+
+input CreateQuestionBoardInput {
+  questionCategory: String!
+  title: String!
+  contents: String!
+}
+
+input UpdateQuestionBoardInput {
+  questionCategory: String
+  title: String
+  contents: String
+}
+
+input UpdateQuestionCommentInput {
+  contents: String
+  questionBoard: String
+  user: String
+}
+
+input CreateScheduleInput {
+  scheduleName: String!
+  scheduleContents: String!
+  scheduleDate: DateTime!
+  processCategoryId: String!
+  projectId: String!
+}
+
+input UpdateScheduleInput {
+  scheduleName: String!
+  scheduleContents: String!
+  scheduleDate: DateTime!
+  processCategoryId: String!
+  status: Boolean!
+}
+
+input createUserInput {
+  userName: String!
+  email: String!
+  password: String!
+  phone: String!
+  userImageURL: String
+}
