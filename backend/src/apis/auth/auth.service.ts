@@ -203,6 +203,6 @@ export class AuthService {
     }
 
     this.setRefreshToken({ user, res });
-    res.redirect('http://smaf.site');
+    res.redirect('https://smaf.site');
   }
 }
