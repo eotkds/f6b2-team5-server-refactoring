@@ -18,10 +18,9 @@ export class AuthService {
     );
 
     // 개발
-    //res.setHeader('Set-Cookie', `refreshToken=${refreshToken}; path=/;`);
-
-    //배포
-    res.setHeader('Access-Control-Allow-Origin', 'http://smaf.site');
+    // res.setHeader('Set-Cookie', `refreshToken=${refreshToken}; path=/;`);
+    // 배포
+    res.setHeader('Access-Control-Allow-Origin', 'https://smaf.site');
     res.setHeader(
       'Set-Cookie',
       `refreshToken=${refreshToken}; path=/; domain=.backend.smaf.shop; SameSite=None; Secure; httpOnly;`,
@@ -33,7 +32,7 @@ export class AuthService {
       { email: user.email, sub: user.userId, name: user.userName }, //
       { secret: process.env.ACCESSKEY, expiresIn: '2h' },
     );
-
+    console.log(accessToken);
     return accessToken;
   }
 
