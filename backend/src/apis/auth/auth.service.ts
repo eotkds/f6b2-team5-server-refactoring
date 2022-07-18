@@ -32,7 +32,6 @@ export class AuthService {
       { email: user.email, sub: user.userId, name: user.userName }, //
       { secret: process.env.ACCESSKEY, expiresIn: '2h' },
     );
-    console.log(accessToken);
     return accessToken;
   }
 
