@@ -20,6 +20,7 @@ async function bootstrap() {
       'http://localhost:3000',
       'https://backend.smaf.shop',
       'http://localhost:5500',
+      'https://storage.googleapis.com/teamproject_storage/projectImage/',
     ],
     credentials: true,
   });
