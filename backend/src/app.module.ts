@@ -17,6 +17,7 @@ import { PaymentModule } from './apis/payment/payment.module';
 import { ScheduleModule } from './apis/schedule/schedule.module';
 import { ProjectParticipantModule } from './apis/projectParticipants/projectParticipant.module';
 import { ProjectFileModule } from './apis/projectFile/projectFile.module';
+import { ConfigModule } from '@nestjs/config';
 // import { ChatGateway } from './chat/chat.gateway';
 // import { ChatModule } from './chat/chat.module';
 // import { ChatModule } from './chat/chat.module';
@@ -68,6 +69,9 @@ import { ProjectFileModule } from './apis/projectFile/projectFile.module';
     }),
 
     // ChatModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
