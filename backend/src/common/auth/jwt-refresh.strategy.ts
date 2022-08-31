@@ -28,7 +28,6 @@ export class JwtRefreshStrategy extends PassportStrategy(Strategy, 'refresh') {
     let refreshToken = req.headers.cookie;
 
     refreshToken = refreshToken.replace('refreshToken=', '');
-
     const isRefreshToken = await this.cacheManager.get(
       `refreshToken:${refreshToken}`,
     );
